@@ -277,6 +277,13 @@ body {
   box-sizing: border-box;
 }
 
+
+/*---added for step 1 ---*/
+
+.tweet-compose:focus {
+  height: 5em;
+}
+
 #tweet-controls {
   text-align: right;
   display: none;
@@ -285,6 +292,8 @@ body {
 #tweet-controls div {
   display: inline-block;
 }
+
+#tweet-controls button {}
 
 #char-count {
   font-size: 14px;
@@ -430,4 +439,13 @@ body {
   position: absolute;
   top: 0;
   left: 0;
+}
+
+
+/*---HIDE ON LOAD---*/
+
+.tweet-actions,
+.stats,
+.reply {
+  display: none;
 }
