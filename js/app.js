@@ -1,4 +1,13 @@
 $(document).ready(function () {
+
+  //template from baked in html.
+  var tweetTemplate = $('div.tweet-wrap').clone();
+  tweetTemplate.find(".avatar").attr("src", "img/jared.jpg");
+  tweetTemplate.find(".fullname").text($("#dashboard p:first-of-type").text());
+  tweetTemplate.find(".username").text('@' + $("#myUserName").text());
+
+
+  //listening for click on text field to increase size of field
   $(".tweet-compose").on("click", function () {
     //increase text field side
     $("#tweet-controls").show('slow');
@@ -17,28 +26,34 @@ $(document).ready(function () {
     }
   });
 
-
-  var tweetTemplate = $('div.tweet-wrap').html();
-
+  //event handler for submitting and prepending new tweet to feed
   $("#tweet-content").on("click", "#tweet-submit", function () {
-
-    $("#stream").prepend(tweetTemplate);
+    tweetTemplate.find('.tweet-text').text($('.tweet-compose').val());
+    $("#stream").prepend(tweetTemplate.html());
   });
 
+  //listening for mouse events to show and hide 
   $("#stream").on({
     mouseenter: function () {
-      $(this).css('background-color', 'red');
-      var showStats = $(this).find('div.stats');
-      showStats.show();
-
+      var $Stats = $(this).find('div.stats');
+      var $Favorites = $(this).find('div.favorites');
+      var $Reply = $(this).find('div.reply');
+      $Stats.show();
+      $Favorites.show();
+      $Reply.show();
     },
-    mouseleave: function () {
-      $(this).css('background-color', 'blue');
-      var showStats = $(this).find('div.stats');
-      showStats.hide();
 
+    mouseleave: function () {
+      var $Stats = $(this).find('div.stats');
+      var $Favorites = $(this).find('div.favorites');
+      var $Reply = $(this).find('div.reply');
+      $Stats.hide();
+      $Favorites.hide();
+      $Reply.hide();
     }
   }, ".tweet");
+
+  /*$("div.timeago").timeago(newDate());*/
 
 
 });
