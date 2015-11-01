@@ -1,11 +1,19 @@
 $(document).ready(function () {
 
   //template from baked in html.
-  var tweetTemplate = $('div.tweet-wrap').clone();
-  tweetTemplate.find(".avatar").attr("src", "img/jared.jpg");
-  tweetTemplate.find(".fullname").text($("#dashboard p:first-of-type").text());
-  tweetTemplate.find(".username").text('@' + $("#myUserName").text());
+  function createTweet() {
+    var tweetTemplate = $('div.tweet-wrap').clone();
+    tweetTemplate.find(".avatar").attr("src", "img/jared.jpg");
+    tweetTemplate.find(".fullname").text($("#dashboard p:first-of-type").text());
+    tweetTemplate.find(".username").text('@' + $("#myUserName").text());
+    tweetTemplate.find("time").attr('datetime', newTime());
+    return tweetTemplate;
+  }
 
+  function newTime() {
+    var timestamp = new Date();
+    return timestamp.toISOString();
+  }
 
   //listening for click on text field to increase size of field
   $(".tweet-compose").on("click", function () {
@@ -28,8 +36,11 @@ $(document).ready(function () {
 
   //event handler for submitting and prepending new tweet to feed
   $("#tweet-content").on("click", "#tweet-submit", function () {
+    var tweetTemplate = createTweet();
     tweetTemplate.find('.tweet-text').text($('.tweet-compose').val());
+    $(".timeago").timeago();
     $("#stream").prepend(tweetTemplate.html());
+    $(".timeago").timeago();
   });
 
   //listening for mouse events to show and hide 
@@ -53,7 +64,7 @@ $(document).ready(function () {
     }
   }, ".tweet");
 
-  /*$("div.timeago").timeago(newDate());*/
+
 
 
 });
