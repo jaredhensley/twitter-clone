@@ -1,6 +1,9 @@
 $(document).ready(function () {
 
-  //template from baked in html.
+
+  /*-----FUNCTION-DECLARATIONS-----*/
+
+  //tweent template factory from baked in html.
   function createTweet() {
     var tweetTemplate = $('div.tweet-wrap').clone();
     tweetTemplate.find(".avatar").attr("src", "img/jared.jpg");
@@ -10,10 +13,13 @@ $(document).ready(function () {
     return tweetTemplate;
   }
 
+  //creates a new time stamp coverted to format timeago.js requires
   function newTime() {
     var timestamp = new Date();
     return timestamp.toISOString();
   }
+
+  /*-----EVENT--HANDLERS-----*/
 
   //listening for click on text field to increase size of field
   $(".tweet-compose").on("click", function () {
@@ -21,7 +27,8 @@ $(document).ready(function () {
     $("#tweet-controls").show('slow');
   });
 
-  //listening for keyup event on tweetbox 
+  //listening for keyup event on tweetbox
+  //logic to determine length of string 
   $(".tweet-compose").keyup(function () {
     var maxChar = 140;
     var currentLength = $(this).val().length;
@@ -64,22 +71,4 @@ $(document).ready(function () {
     }
   }, ".tweet");
 
-
-
-
 });
-
-
-
-
-/*  var tweetTemplate = $('<div class="tweet">' +
-    '<div class="content">' +
-    '<img class="avatar" src="img/damenleeturks.jpg" />' +
-    '<strong class="fullname">' +
-    'My BFF</strong>' +
-    '<span class="username">@mybff</span>' +
-    '<p class="tweet-text">Today is an amazing day.</p>' +
-    '<div class="tweet-actions">' + '<ul>' + '<li>' +
-    '<span class="icon action-reply">' + '</span>' +
-    ' Reply</li>' + '<li><span class="icon action-retweet">' +
-    '</span> Retweet</li>' + '<li><span class="icon action-favorite">' + '</span>' + 'Favorite</li>' + '<li><span class="icon action-more"></span> More</li>' + '</ul>' + '</div>');*/
