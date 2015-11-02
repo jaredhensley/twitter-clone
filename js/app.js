@@ -1,3 +1,7 @@
+//TODO LIST
+//CREATE NEW DIV FOR TIMEAGO APPENDING
+//GENERATE DYNAMIC TIME STAMP 
+
 $(document).ready(function () {
 
 
